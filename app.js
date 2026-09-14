@@ -6,6 +6,7 @@ const app = express();
 const tourRouter = require("./routes/tourRouter");
 const userRouter = require("./routes/userRouter");
 const { unknownEndpoint } = require("./middleware/customMiddleware");
+const { errorHandler } = require("./middleware/customMiddleware");
 const connectDB = require ('./config/db')
 
 const morgan = require("morgan");
@@ -28,7 +29,7 @@ app.use("/api/tours", tourRouter);
 app.use("/api/users", userRouter);
 
 app.use(unknownEndpoint);
-// app.use(errorHandler);
+app.use(errorHandler);
 
 const port = process.env.PORT || 4000;
 // Start the server
