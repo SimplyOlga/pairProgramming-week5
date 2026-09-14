@@ -21,6 +21,11 @@ app.get('/', (req, res) => {
   res.send('API is running');
 });
 
+app.get('/error', (req, res, next) => {
+  const error = new Error("Network problem!")
+  next(error);
+})
+
 
 // Use the tourRouter for all "/tours" routes
 app.use("/api/tours", tourRouter);
