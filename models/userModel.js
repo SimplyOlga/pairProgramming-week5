@@ -10,9 +10,55 @@
   "company": "Nordic Travel Ltd"
 } */
 
-let userArray = [];
+const mongoose = require('mongoose');
 
-let nextId = 1;
+const userSchema = new mongoose.Schema({
+
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  phone_number: {
+    type: String,
+    required: true,
+  },
+  gender: {
+    type: String,
+    required: true,
+    enum: ['Male', 'Female', 'Other']
+  },
+  date_of_birth: {
+    type: Date,
+    required: true,
+  },
+  membership_status: {
+    type: String,
+    required: true,
+    enum: ['Active', 'Inactive', 'Suspended'],
+    default: 'Active',
+  },
+  account_verified: {
+    type: Boolean,
+    required: true,
+  },
+  company: {
+    type: String,
+  },
+},
+{
+  timestamps: true,
+}
+  
+)
 
 function getAll() {
   return userArray;
@@ -157,13 +203,7 @@ if (require.main === module) {
   console.assert(deletedUserCheck === false, "User should be deleted");
 }
 
-const User = {
-  getAll,
-  addOne,
-  findById,
-  updateOneById,
-  deleteOneById,
-};
 
+const User = mongoose.model('User', userSchema)
 module.exports = User;
 
