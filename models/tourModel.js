@@ -53,50 +53,50 @@ const tourSchema = new mongoose.Schema({
 const Tour = mongoose.model('Tour', tourSchema)
 
 
-function getAll() {
-  return tourArray;
-}
+// function getAll() {
+//   return tourArray;
+// }
 
-function addOne(tourData) {
-  // Check if any parameter is empty or undefined
-  const { name, info, image, price, duration, rating, season, specialOffer } = tourData;
-  if (!name || !info || !image || !price || !duration || rating === undefined || !season || !specialOffer) {
-    return false;
-  }
+// function addOne(tourData) {
+//   // Check if any parameter is empty or undefined
+//   const { name, info, image, price, duration, rating, season, specialOffer } = tourData;
+//   if (!name || !info || !image || !price || !duration || rating === undefined || !season || !specialOffer) {
+//     return false;
+//   }
 
-  const newItem = {
-    id: nextId++,
-    ...tourData,
-  };
+//   const newItem = {
+//     id: nextId++,
+//     ...tourData,
+//   };
 
-  tourArray.push(newItem);
-  return newItem;
-}
+//   tourArray.push(newItem);
+//   return newItem;
+// }
 
-function findById(id) {
-  const numericId = Number(id);
-  const item = tourArray.find((item) => item.id === numericId);
-  return item || false;
-}
+// function findById(id) {
+//   const numericId = Number(id);
+//   const item = tourArray.find((item) => item.id === numericId);
+//   return item || false;
+// }
 
-function updateOneById(id, updatedData) {
-  const tour = findById(id);
-  if (tour) {
-    Object.assign(tour, updatedData); // Update properties using Object.assign
-    return tour;
-  }
-  return false;
-}
+// function updateOneById(id, updatedData) {
+//   const tour = findById(id);
+//   if (tour) {
+//     Object.assign(tour, updatedData); // Update properties using Object.assign
+//     return tour;
+//   }
+//   return false;
+// }
 
-function deleteOneById(id) {
-  const item = findById(id);
-  if (item) {
-    const initialLength = tourArray.length;
-    tourArray = tourArray.filter((item) => item.id !== Number(id));
-    return tourArray.length < initialLength; // Indicate successful deletion if the length has decreased
-  }
-  return false; // Return false if the item was not found
-}
+// function deleteOneById(id) {
+//   const item = findById(id);
+//   if (item) {
+//     const initialLength = tourArray.length;
+//     tourArray = tourArray.filter((item) => item.id !== Number(id));
+//     return tourArray.length < initialLength; // Indicate successful deletion if the length has decreased
+//   }
+//   return false; // Return false if the item was not found
+// }
 
 if (require.main === module) {
   // Add tour
