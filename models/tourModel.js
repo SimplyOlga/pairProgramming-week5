@@ -47,10 +47,10 @@ const tourSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  timestamps: true
-}, 
+}, {timestamps: true}
 )
 
+const Tour = mongoose.model('Tour', tourSchema)
 
 
 function getAll() {
@@ -174,13 +174,7 @@ if (require.main === module) {
   console.assert(deletedTourCheck === false, "Tour should be deleted");
 }
 
-const Tour = {
-  getAll,
-  addOne,
-  findById,
-  updateOneById,
-  deleteOneById,
-};
+
 
 module.exports = Tour;
 
